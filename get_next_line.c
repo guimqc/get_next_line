@@ -22,6 +22,8 @@ static void	read_file(char **result, int fd)
 	while (!ft_strchr(*result, '\n'))
 	{
 		byte_count = read(fd, buff, BUFFER_SIZE);
+		if (byte_count == 0)
+			break ;
 		buff[byte_count] = '\0';
 		*result = ft_strjoin(*result, buff);
 	}
@@ -45,7 +47,8 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	read_file(&result[fd], fd);
-	get_line(result[fd], &line);
+	if (result[fd])
+		get_line(result[fd], &line);
 	free(result[fd]); // still reachable if not freed at the last iteration
 	return (line);
 }

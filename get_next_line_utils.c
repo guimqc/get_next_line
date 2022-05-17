@@ -1,0 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gvial <marvin@42quebec.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/16 13:54:34 by gvial             #+#    #+#             */
+/*   Updated: 2022/05/16 13:54:36 by gvial            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line.h"
+
+size_t	ft_strlen(char *str)
+{
+	size_t	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	while (n > 0)
+		((char *)s)[--n] = 0;
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*p;
+
+	p = malloc(size * count);
+	if (p)
+		ft_bzero(p, (count * size));
+	return (p);
+}
+
+int	ft_strchr(const char *s, int c)
+{
+	int	i;
+	int	dstsize;
+
+	if (!s)
+		return (0);
+	dstsize = ft_strlen((char *)s) + 1;
+	i = -1;
+	while (++i < dstsize)
+		if ((*s++ == (char)c))
+			return (1);
+	return (0);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	i;
+	size_t	s1_len;
+	size_t	s2_len;
+
+	s1_len = ft_strlen((char *)s1);
+	s2_len = ft_strlen((char *)s2);
+	str = ft_calloc(s1_len + s2_len + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (++i < s1_len)
+		str[i] = s1[i];
+	i = -1;
+	while (++i < s2_len)
+		str[i + s1_len] = s2[i];
+	str[i + s1_len] = '\0';
+	if (s1)
+		free((void *)s1);
+	return (str);
+}

@@ -94,7 +94,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len, int free_s)
 	i = -1;
 	while (++i < len && s[i])
 		str[i] = s[start + i];
-	if (free_s == 1)
+	if (free_s == 1 && s)
 		free((void *)s);
 	return (str);
 }

@@ -78,3 +78,23 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		free((void *)s1);
 	return (str);
 }
+
+char	*ft_substr(char const *s, unsigned int start, size_t len, int free_s)
+{
+	char	*str;
+	size_t	i;
+
+	if (len > ft_strlen((char *)s))
+		len = ft_strlen((char *)s);
+	str = ft_calloc(len + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	if (start >= ft_strlen((char *)s))
+		return (str);
+	i = -1;
+	while (++i < len && s[i])
+		str[i] = s[start + i];
+	if (free_s == 1)
+		free((void *)s);
+	return (str);
+}

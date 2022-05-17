@@ -28,13 +28,24 @@ static void	read_file(char **result, int fd)
 	free(buff);
 }
 
+static void	get_line(char *result, char **line)
+{
+	int	len;
+
+	len = 0;
+	while (result[len] != '\n' && result[len] != '\0')
+		len++;
+	*line = ft_substr(result, 0, len + 1, 0);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*result[OPEN_MAX];
+	char		*line;
 
+	line = NULL;
 	read_file(&result[fd], fd);
-
-	printf("res: %s", result[fd]);
-	free(result[fd]);
-	return (NULL);
+	get_line(result[fd], &line);
+	free(result[fd]); // still reachable if not freed at the last iteration
+	return (line);
 }

@@ -40,6 +40,23 @@ static void	get_line(char *result, char **line)
 	*line = ft_substr(result, 0, len + 1, 0);
 }
 
+static void	trim_result(char **result)
+{
+	int	len;
+
+
+	len = 0;
+	while (result[0][len] != '\n' && result[0][len] != '\0')
+		len++;
+	if ((int)ft_strlen(*result) == len + 1)
+	{
+		free(*result);
+		*result = NULL;
+	}
+	else
+		*result = ft_substr(*result, len + 1, ft_strlen(*result) - len, 1);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*result[OPEN_MAX];
@@ -49,6 +66,8 @@ char	*get_next_line(int fd)
 	read_file(&result[fd], fd);
 	if (result[fd])
 		get_line(result[fd], &line);
+	if (result[fd])
+		trim_result(&result[fd]);
 	free(result[fd]); // still reachable if not freed at the last iteration
 	return (line);
 }

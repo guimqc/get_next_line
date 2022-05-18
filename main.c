@@ -3,7 +3,7 @@
 int main(void)
 {
 	int		fd = open("txt", O_RDONLY);
-	char 	*next_line;
+	char	*next_line;
 	// int		i;
 
 	// i  = 0;

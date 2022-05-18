@@ -27,7 +27,8 @@ static void	read_file(char **result, int fd)
 		buff[byte_count] = '\0';
 		*result = ft_strjoin(*result, buff);
 	}
-	free(buff);
+	if (buff)
+		free(buff);
 }
 
 static void	get_line(char *result, char **line)
@@ -50,7 +51,8 @@ static void	trim_result(char **result)
 		len++;
 	if ((int)ft_strlen(*result) == len + 1)
 	{
-		free(*result);
+		if (*result)
+			free(*result);
 		*result = NULL;
 	}
 	else

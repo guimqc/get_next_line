@@ -24,4 +24,8 @@ int main(void)
 	next_line = get_next_line(fd);
 	printf("%s", next_line);
 	free(next_line);
+
+	next_line = get_next_line(fd);
+	printf("%s", next_line);
+	free(next_line);
 }

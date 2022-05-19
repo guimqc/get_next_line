@@ -12,19 +12,18 @@
 
 #include "get_next_line.h"
 
-static void	read_file(char **result, int fd)
+static void	read_file(char **result, int *byte_count, int fd)
 {
 	char	*buff;
-	int		byte_count;
 
-	byte_count = 1;
+	*byte_count = 1;
 	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	while (!ft_strchr(*result, '\n'))
 	{
-		byte_count = read(fd, buff, BUFFER_SIZE);
-		if (byte_count == 0)
+		*byte_count = read(fd, buff, BUFFER_SIZE);
+		if (*byte_count == 0)
 			break ;
-		buff[byte_count] = '\0';
+		buff[*byte_count] = '\0';
 		*result = ft_strjoin(*result, buff);
 	}
 	if (buff)
@@ -62,10 +61,11 @@ static void	trim_result(char **result)
 char	*get_next_line(int fd)
 {
 	static char	*result[OPEN_MAX];
+	int			byte_count;
 	char		*line;
 
 	line = NULL;
-	read_file(&result[fd], fd);
+	read_file(&result[fd], &byte_count, fd);
 	if (result[fd])
 		get_line(result[fd], &line);
 	if (result[fd])

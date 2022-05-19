@@ -70,6 +70,7 @@ char	*get_next_line(int fd)
 		get_line(result[fd], &line);
 	if (result[fd])
 		trim_result(&result[fd]);
-	free(result[fd]); // still reachable if not freed at the last iteration
 	return (line);
 }
+
+//	free(result[fd]); // still reachable if not freed at the last iteration

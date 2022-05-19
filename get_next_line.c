@@ -70,6 +70,11 @@ char	*get_next_line(int fd)
 		get_line(result[fd], &line);
 	if (result[fd])
 		trim_result(&result[fd]);
+	if (byte_count == 0 && ft_strlen(result[fd]) == 0)
+	{
+		free(result[fd]);
+		result[fd] = NULL;
+	}
 	return (line);
 }
 

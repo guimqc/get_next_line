@@ -44,7 +44,6 @@ static void	trim_result(char **result)
 {
 	int	len;
 
-
 	len = 0;
 	while (result[0][len] != '\n' && result[0][len] != '\0')
 		len++;

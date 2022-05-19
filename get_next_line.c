@@ -76,5 +76,3 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-
-//	free(result[fd]); // still reachable if not freed at the last iteration

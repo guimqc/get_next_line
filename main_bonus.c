@@ -27,4 +27,7 @@ int main(void)
 		}
 		i = 0;
 	}
+	close(fd);
+	close(fd2);
+	close(fd3);
 }

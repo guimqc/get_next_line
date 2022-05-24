@@ -47,7 +47,7 @@ static void	trim_result(char **result)
 	len = 0;
 	while (result[0][len] != '\n' && result[0][len] != '\0')
 		len++;
-	if ((int)ft_strlen(*result) == len + 1)
+	if ((int)ft_strlen(*result) == len + 1 || (int)ft_strlen(*result) == len)
 	{
 		if (*result)
 			free(*result);

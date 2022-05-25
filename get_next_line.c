@@ -57,11 +57,6 @@ static void	trim_result(char **result)
 		*result = ft_substr(*result, len + 1, ft_strlen(*result) - len, 1);
 }
 
-int test()
-{
-	return (-1);
-}
-
 char	*get_next_line(int fd)
 {
 	static char	*result[OPEN_MAX];

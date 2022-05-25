@@ -21,7 +21,7 @@ static void	read_file(char **result, int *byte_count, int fd)
 	while (!ft_strchr(*result, '\n'))
 	{
 		*byte_count = read(fd, buff, BUFFER_SIZE);
-		if (*byte_count == 0)
+		if (*byte_count == 0 || *byte_count == -1)
 			break ;
 		buff[*byte_count] = '\0';
 		*result = ft_strjoin(*result, buff);

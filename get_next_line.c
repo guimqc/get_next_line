@@ -21,7 +21,7 @@ static void	read_file(char **result, int *byte_count, int fd)
 	while (!ft_strchr(*result, '\n'))
 	{
 		*byte_count = read(fd, buff, BUFFER_SIZE);
-		if (*byte_count == 0)
+		if (*byte_count == 0 || *byte_count == -1)
 			break ;
 		buff[*byte_count] = '\0';
 		*result = ft_strjoin(*result, buff);
@@ -55,6 +55,11 @@ static void	trim_result(char **result)
 	}
 	else
 		*result = ft_substr(*result, len + 1, ft_strlen(*result) - len, 1);
+}
+
+int test()
+{
+	return (-1);
 }
 
 char	*get_next_line(int fd)
